@@ -262,13 +262,14 @@ class Rent extends CI_Controller
                     'created_at'            => date("Y-m-d H:i:s"),
                     'branch_id'             => $this->session->userdata('BRANCHid')
                 );
-                $invoice++;
                 array_push($BatchArray, $RentGenerate);
+
+                $invoice++;
             }
 
+            $this->db->insert_batch('tbl_rent_generate', $BatchArray);
 
             $res = ['success' => true, 'message' => 'Rent Update successfully'];
-            $this->db->insert_batch('tbl_rent_generate', $BatchArray);
         } catch (\Exception $e) {
             $res = ['success' => false, 'message' => $e->getMessage()];
         }

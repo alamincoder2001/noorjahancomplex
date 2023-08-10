@@ -8,13 +8,13 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 
-	'username' => 'bigektuw',
-	'password' => 'sChzA2HnVel0',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'bigektuw_noorjahancomplex',
 
-// 	'username' => 'root',
-// 	'password' => '',
-// 	'database' => 'dewbxcak_noorjahan',
+	// 'username' => 'bigektuw',
+	// 'password' => 'sChzA2HnVel0',
+	// 'database' => 'bigektuw_noorjahancomplex',
 
 
 	'dbdriver' => 'mysqli',

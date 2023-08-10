@@ -244,12 +244,10 @@
             month(month) {
                 if (this.month == undefined) return;
                 this.rent.month_id = month.month_id;
-                // console.log(this.rent.month_id);
             },
             serviceMonth(serviceMonth) {
                 if (this.serviceMonth == undefined) return;
                 this.rent.service_month = serviceMonth.month_name;
-                // console.log(this.rent.service_month);
             }
         },
         created() {
@@ -263,7 +261,6 @@
             getMonth() {
                 axios.get('/get_months').then(res => {
                     this.months = res.data;
-                    // console.log(this.months);
                 })
             },
             async getShop() {
@@ -301,12 +298,10 @@
                 } else {
                     let filter = {
                         month_id: this.month.month_id,
-                        // service_month: this.rent.service_month
                     }
                     await axios.post('/get_shop_for_rent_generate', filter).then(res => {
                         this.rents = [];
                         this.shops = res.data;
-                        console.log(this.shops);
 
                         this.shops.forEach(item => {
                             let CartRent = {
@@ -336,7 +331,6 @@
                 }
             },
             totalAmount(rent) {
-                // console.log(rent);
                 let total_amount = parseFloat(parseFloat(rent.ac_bill) + parseFloat(rent.shop_or_flat_rent) + parseFloat(rent.shop_electricity_bill) + parseFloat(rent.shop_water_bill) + parseFloat(rent.shop_gass_bill) + parseFloat(rent.total_service_charge) + parseFloat(rent.other_charge)) - (parseFloat(rent.adjustment_amount) - parseFloat(rent.ait_adjustment)).toFixed(2);
                 rent.total_amount = parseFloat(total_amount).toFixed(2);
             },
@@ -351,6 +345,7 @@
                 if (this.generate) {
                     url = "/update_generate_rent";
                 }
+
                 this.isProcess = true;
 
                 axios.post(url, data).then(res => {
