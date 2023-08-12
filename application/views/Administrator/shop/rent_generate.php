@@ -105,7 +105,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive fixTableHead">
-                <table class="table table-bordered" v-if="shops.length > 0">
+                <table class="table table-bordered" v-if="shops.length > 0" style="display: none;" :style="{display: cart.length > 0 ? '' : 'none'}">
                     <thead id="header-fixed">
                         <tr>
                             <th>SL</th>
@@ -127,7 +127,6 @@
                     </thead>
                     <tbody>
                         <tr v-for="(rent, i) in cart">
-
                             <td>{{ i + 1 }}</td>
                             <td>{{ rent.shop_name }}</td>
                             <td>{{ rent.floor_name }}</td>
@@ -157,7 +156,7 @@
                     </tfoot>
                 </table>
 
-                <table class="table table-bordered" v-if="generate">
+                <table class="table table-bordered" v-if="generate" style="display:none;" :style="{display: rents.length > 0 ? '' : 'none'}">
                     <thead>
                         <tr>
                             <th>SL</th>
@@ -199,7 +198,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="14">
-                                <button type="button" @click="SaveGenerate" name="btnSubmit" title="Save" class="btn btn-sm btn-success pull-right">
+                                <button type="button" @click="SaveGenerate" name="btnSubmit" title="Save" class="btn btn-sm btn-success pull-right" :disabled='isProcess'>
                                     Update
                                     <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                                 </button>
@@ -364,10 +363,11 @@
                     generate_date: moment().format("YYYY-MM-DD"),
                     month_id: null,
                     service_month: '',
-                }
-                this.month = null;
-                this.cart = [];
-                this.rents = [];
+                };
+                this.month        = null,
+                this.serviceMonth = null,
+                this.cart         = [];
+                this.rents        = [];
             }
         }
     })
